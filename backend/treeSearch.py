@@ -76,7 +76,7 @@ class Puzzle(Problem):
 			x = i // l
 			y = i % l
 			board.append((x,y))
-		for i in range(self.n*3):
+		for i in range(self.n*2):
 			swap_i = np.random.randint(0, len(self.problem[board[0]]))
 			swap = self.problem[board[0]][swap_i]
 			for j in range(len(board)):
