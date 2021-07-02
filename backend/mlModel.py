@@ -6,10 +6,11 @@ from keras.utils import np_utils
 
 class Model:
 	def __init__(self):
+		# Load trained neural network model
 		self.mnist_model = load_model('keras_mnist.h5')
 
 	def predict_number(self,img):
-		# resize?
+		# reshape img to fit model
 		img = img.reshape(1,784)
 		img = img.astype('float32')
 		img /= 255

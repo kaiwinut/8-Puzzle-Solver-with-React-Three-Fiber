@@ -117,7 +117,6 @@ class Puzzle(Problem):
 	def goal_test(self, node):
 		return node.board_state == self.goal
 
-	# need think over
 	def remove_first(self, fringe):
 		fringe.sort(key = lambda x: self.est_cost(x) + x.path_cost)
 		ret = fringe[0]
