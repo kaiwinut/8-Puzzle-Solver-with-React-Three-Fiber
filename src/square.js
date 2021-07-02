@@ -3,12 +3,15 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useTexture } from "@react-three/drei";
 
 const Square = (props) => {
+  // Animation speed
   const speed = 0.03;
+  // Number textures
   const texture = useTexture('images/' + props.number + '.png')
   const mesh = useRef()
   const [hovered, setHover] = useState(false)
 
   useFrame((state, delta) => {
+    // Move until reach target position
     if (props.direction && Math.abs(mesh.current.position.x - props.position[0]) < 1.3 && Math.abs(mesh.current.position.y - props.position[1]) < 1.3) {
       switch (props.direction) {
         case 1:

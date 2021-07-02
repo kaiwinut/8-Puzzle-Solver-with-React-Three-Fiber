@@ -5,9 +5,7 @@ import Axios from 'axios';
 import App from './App';
 import './index.css';
 
-// const problem = [[1, 1], [0, 1], [0, 2], [0, 0], [2, 2], [2, 1], [1, 0], [2, 0], [1, 2]];
-// const solution = [[1, 1], [2, 1], [2, 2], [1, 2], [1, 1], [2, 1], [2, 0], [1, 0], [0, 0]];
-
+// If shuffle button is clicked
 let generate = false;
 
 const switchGenerate = () => {
@@ -34,7 +32,7 @@ const makePuzzle = (generate=false) => {
   let solution;
   let result;
   if (generate) {
-    console.log('Generate Puzzle!');
+    // console.log('Generate Puzzle!');
     result = Axios.post('http://127.0.0.1:5000/generatePuzzle', {
       post_text: 'ready!'
     }).then( (res) => {
@@ -43,7 +41,7 @@ const makePuzzle = (generate=false) => {
       return [puzzle, solution]
     })
   } else {
-    console.log('Get Puzzle!');
+    // console.log('Get Puzzle!');
     result = Axios.post('http://127.0.0.1:5000/getPuzzle', {
       post_text: 'ready!'
     }).then( (res) => {

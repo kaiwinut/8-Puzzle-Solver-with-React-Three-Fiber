@@ -3,7 +3,7 @@ import React, {useMemo} from 'react';
 import { Canvas, useLoader } from '@react-three/fiber';
 
 const Text = (props) => {
-
+  // font: stencil
   const font = useLoader(THREE.FontLoader, 'fonts/stencil.json')
   const config = useMemo(
     () => ({

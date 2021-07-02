@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useTexture } from "@react-three/drei";
 
 const StartButton = (props) => {
+  // Change textures when state changes
   const textureStart = useTexture('images/start.png')
   const texturePause = useTexture('images/pause.png')
   const textureGoal = useTexture('images/goal.png')
