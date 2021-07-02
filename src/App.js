@@ -134,19 +134,13 @@ const App = (props) => {
 
   return (
     <div className='container'>
-      <!-- // Set camera position -->
       <Canvas className="canvas" camera={{position: [0, 0, 7], fov: 60}}>
-        <!-- // While loading animation do nothing -->
         <Suspense fallback={null}>
-          <!-- // Orbit control, drag to rotate, scroll to zoom in / out -->
           <OrbitControls />
-          <!-- // Light -->
           <ambientLight intensity={0.1} />
           <directionalLight color="gray" position={[0, 0, 5]} />
-          <!-- // Title, Step count -->
           <Text position={[-1.7, 2.5, 0]} string={"8-Puzzle!"} />
           <Text position={[-4.5, 1.1, 0]} string={"Steps\nLeft:\n" + (props.solution.length - currentStepNumber - 1)} />
-          <!-- // Control Buttons -->
           <StartButton setStart={setStart} start={start} isGoal={isGoal}/>
           <ResetButton reset={reset} />
           <ShuffleButton generateAndReset={generateAndReset} reset={reset}/>
