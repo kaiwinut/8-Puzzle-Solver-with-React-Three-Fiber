@@ -4,6 +4,8 @@ import { Canvas, useLoader, useFrame } from '@react-three/fiber';
 import { useTexture, OrbitControls } from "@react-three/drei";
 
 import {StartButton, ResetButton, ShuffleButton} from './buttons';
+import Text from './text';
+import Square from './square';
 
 var currentGame;
 var currentStepNumber = 0;
@@ -58,74 +60,6 @@ const swapSquare = (currentGame, numberToMove) => {
 
 const addStep = () => {
   currentStepNumber += 1;
-}
-
-const StepsLeft = (props) => {
-
-  const font = useLoader(THREE.FontLoader, 'fonts/stencil.json')
-  const config = useMemo(
-    () => ({
-      font,
-      size: 0.6,
-      height: 0.1,
-      curveSegments: 2,
-      weight: 'bold',
-    }),
-    [font]
-  )
-  return (
-      <mesh position={props.position}>
-        <textGeometry attach="geometry" args={[props.string, config]} />
-        <meshPhongMaterial attach="material" color={0xb4846c} />
-      </mesh>
-  );
-}
-
-const Square = (props) => {
-  const speed = 0.03;
-  const texture = useTexture('images/' + props.number + '.png')
-  const mesh = useRef()
-  const [hovered, setHover] = useState(false)
-
-  useFrame((state, delta) => {
-    if (props.direction && Math.abs(mesh.current.position.x - props.position[0]) < 1.3 && Math.abs(mesh.current.position.y - props.position[1]) < 1.3) {
-      switch (props.direction) {
-        case 1:
-          mesh.current.position.y += speed;
-          break;
-        case 2:
-          mesh.current.position.x += speed;
-          break;
-        case 3:
-          mesh.current.position.y -= speed;
-          break;
-        case 4:
-          mesh.current.position.x -= speed;
-          break;
-        default:
-          break;
-      }
-    } else if (props.direction) {
-      props.setSqmoved(true)
-    }
-  })
-
-  return (
-    <mesh position={props.position}
-          ref={mesh}
-          scale={hovered ? 1.1 : 1}
-          onPointerOver={(e) => setHover(true)}
-          onPointerOut={(e) => setHover(false)}
-    >
-      <boxGeometry args={[1, 1, 0.5]}/>
-      <meshStandardMaterial attachArray="material" color={0xfcdec0}/>
-      <meshStandardMaterial attachArray="material" color={0xfcdec0}/>
-      <meshStandardMaterial attachArray="material" color={0xfcdec0}/>
-      <meshStandardMaterial attachArray="material" color={0xfcdec0}/>
-      <meshStandardMaterial attachArray="material" map={texture} color={0xfcdec0}/>
-      <meshStandardMaterial attachArray="material" color={0xfcdec0}/>
-    </mesh>
-  );
 }
 
 const App = (props) => {
@@ -197,8 +131,8 @@ const App = (props) => {
           <ambientLight intensity={0.1} />
           <directionalLight color="gray" position={[0, 0, 5]} />
 
-          <StepsLeft position={[-1.7, 2.5, 0]} string={"8-Puzzle!"} />
-          <StepsLeft position={[-4.5, 1.1, 0]} string={"Steps\nLeft:\n" + (props.solution.length - currentStepNumber - 1)} />
+          <Text position={[-1.7, 2.5, 0]} string={"8-Puzzle!"} />
+          <Text position={[-4.5, 1.1, 0]} string={"Steps\nLeft:\n" + (props.solution.length - currentStepNumber - 1)} />
           <StartButton setStart={setStart} start={start} isGoal={isGoal}/>
           <ResetButton reset={reset} />
           <ShuffleButton generateAndReset={generateAndReset} reset={reset}/>
