@@ -1,5 +1,7 @@
 # 8-Puzzle-Solver with React-Three-Fiber
 
+<img src="https://github.com/kaiwinut/8-Puzzle-Solver-with-React-Three-Fiberblob/main/demo.gif" width="500" alt="demo" />
+
 ## How to run the code
 Run the 'main.py' file in the backend folder with Python3. Add --camera option after 'python3 main.py' to run in camera (or webcam) mode. For testing purpose, add --random option to generate random puzzles without the need to turn the camera on. If no options or both options are specified, an exception will be raised.
 
